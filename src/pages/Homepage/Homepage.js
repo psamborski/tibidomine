@@ -1,42 +1,73 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import './Homepage.scss'
+
+import { documentToHtmlString } from '@contentful/rich-text-html-renderer'
 
 import FullPageHero from '../../components/templates/FullPageHero'
 import BgImage from '../../assets/images/bg.jpg'
 import Button from '../../components/atoms/Button'
 import PageTitle from '../../components/atoms/PageTitle'
+import Loading from '../Loading'
+
 import TranslationContext from '../../features/TranslationContext'
+
+import { getHomepage } from '../../functions/requests'
 
 export const Homepage = ({ ...restProps }) => {
   const translationContext = useContext(TranslationContext)
-  const { t } = translationContext
+  const {
+   t, language,
+  } = translationContext
+
+  const [homepageData, setHomepageData] = useState(null)
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    getHomepage()
+      .then(resp => {
+        setHomepageData(
+          {
+            en: resp?.data?.data?.en?.homepage?.[0],
+            pl: resp?.data?.data?.pl?.homepage?.[0],
+          },
+        )
+        setLoading(false)
+      })
+      .catch(e => {
+        setLoading(false)
+        throw new Error('Invalid call')
+      })
+  }, [])
 
   return (
-    <FullPageHero
-      cta={(
-        <Button
-          title='O nas - Tibi Domine'
-          to='/about/choir'
-        >
-          {t('HERO__ABOUT_US')}
-        </Button>
-    )}
-      imageSrc={BgImage}
-      paragraph={(
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-          dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
-          ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-          nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
-          anim id est laborum.
-        </p>
-    )}
-      title={(
-        <PageTitle
-          level={1}
-          subtitle='Chór kameralny'
-          title='Tibi Domine'
+    loading
+      ? <Loading />
+      : (
+        <FullPageHero
+          cta={(
+            <Button
+              title={`${t('MENU__ABOUT')} - Tibi Domine`}
+              to='/about/choir'
+            >
+              {t('HERO__ABOUT_US')}
+            </Button>
+          )}
+          imageSrc={BgImage}
+          paragraph={(
+            <div
+              dangerouslySetInnerHTML={{
+                __html: documentToHtmlString(homepageData?.[language]?.shortChoirDescription?.json || {}),
+              }}
+            />
+          )}
+          title={(
+            <PageTitle
+              level={1}
+              subtitle={homepageData?.[language]?.pageSubtitle}
+              title={homepageData?.[language]?.pageTitle}
+            />
+          )}
         />
-    )}
-    />
-) }
+      )
+  )
+}

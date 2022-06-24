@@ -234,7 +234,7 @@
     ],
     "react/no-access-state-in-setstate": "warn",
     "react/no-array-index-key": "error",
-    "react/no-danger": "warn",
+    "react/no-danger": "off",
     "react/no-did-mount-set-state": "off",
     "react/jsx-fragments": "off",
     "react/no-did-update-set-state": "off",
