@@ -6,18 +6,25 @@ import { ReactComponent as LogoImage } from '../../../assets/images/tibi_domine_
 import { ROUTES } from '../../../utils/routes'
 
 export const Logo = ({
-  width, height, ...restProps
+  src, width, height, ...restProps
 }) => (
   <div className='Logo'>
     <Link
       to={ROUTES.HOMEPAGE}
     >
-      <LogoImage />
+      {src
+        ? (
+          <img
+            alt='Tibi Domine Logo'
+            src={src}
+          />
+        )
+        : <LogoImage />
+      }
     </Link>
   </div>
 )
 
-// Logo.defaultProps = {
-//   width: 'initial',
-//   height: 'initial',
-// }
+Logo.defaultProps = {
+  src: '',
+}

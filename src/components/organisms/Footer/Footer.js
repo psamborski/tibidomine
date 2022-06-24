@@ -18,7 +18,6 @@ export const Footer = () => {
   useEffect(() => {
     getFooter()
       .then(resp => {
-        console.log(resp?.data?.data)
         setFooterData(
           {
           en: resp?.data?.data?.en?.footer?.[0],

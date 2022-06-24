@@ -80,7 +80,7 @@ export const RoutesComponent = (props) => {
 
           {/*
               header and footer are outside the atomic templates to prevent many API calls on mount
-              TODO / consider using redux to maintain state and to avoid subsequent useless api call
+              TODO / consider using redux to maintain state, structurize data and to avoid subsequent useless api call
               TODO / and then putting footer and header back to template
           */}
           <Header />

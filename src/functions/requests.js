@@ -31,3 +31,31 @@ export const getFooter = async () => {
     },
   )
 }
+
+export const getHeader = async () => {
+  const body = `{
+    pl: basicInfoCollection(limit: 1) {
+      header: items {
+        logo {
+          url,
+          title
+        }
+      }
+    },
+    en: basicInfoCollection(limit: 1) {
+      header: items {
+        logo {
+          url,
+          title
+        }
+      }
+    }
+  }`
+
+  return AxiosInstance().post(
+    '',
+    {
+      query: body,
+    },
+  )
+}
