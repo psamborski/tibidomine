@@ -10,7 +10,7 @@ export const AxiosInstance = (
   authorization = `Bearer ${CONFIG.CONTENTFUL_CONSUME_API_KEY}`,
   baseUrl = `https://graphql.contentful.com/content/v1/spaces/${CONFIG.CONTENTFUL_SPACE_ID}/`,
 ) => {
-  const testMode = process.env.NODE_ENV === 'production'
+  const testMode = process.env.NODE_ENV !== 'production'
   // const axiosInstance = applyCaseMiddleware(
   //   axios.create({
   //     baseURL: baseUrl,
