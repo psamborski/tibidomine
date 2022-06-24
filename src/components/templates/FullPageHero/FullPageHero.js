@@ -1,14 +1,10 @@
 import React from 'react'
 import './FullPageHero.scss'
 
-import Header from '../../organisms/Header'
-import Footer from '../../organisms/Footer'
-
 export const FullPageHero = ({
  imageSrc, cta, title, paragraph, ...restProps
 }) => (
   <div className='Full-Page-Hero'>
-    <Header />
     <section
       className='Hero-Section'
       style={{
@@ -21,7 +17,6 @@ export const FullPageHero = ({
         {cta || null}
       </div>
     </section>
-    <Footer />
   </div>
 )
 

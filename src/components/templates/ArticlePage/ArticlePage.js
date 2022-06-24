@@ -1,15 +1,12 @@
 import React from 'react'
 import './ArticlePage.scss'
 
-import Header from '../../organisms/Header'
-import Footer from '../../organisms/Footer'
 import ArticleImageTitle from '../../molecules/ArticleImageTitle'
 
 export const ArticlePage = ({
  title, subtitle, imageSrc, content, fullWidthSection, ...restProps
 }) => (
   <div className='Article-Page'>
-    <Header />
     <section
       className='Article-Section'
     >
@@ -29,7 +26,6 @@ export const ArticlePage = ({
           {fullWidthSection}
         </section>
       )}
-    <Footer />
   </div>
 )
 

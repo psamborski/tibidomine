@@ -7,6 +7,8 @@ import ScrollToTop from '../ScrollToTop'
 import ErrorBoundary from '../ErrorBoundary'
 
 import Error404 from '../../pages/Error404'
+import Header from '../../components/organisms/Header'
+import Footer from '../../components/organisms/Footer'
 
 /* ---------- */
 
@@ -75,6 +77,14 @@ export const RoutesComponent = (props) => {
       <BrowserRouter>
         <ScrollToTop />
         <Suspense fallback={<LoadingPage />}>
+
+          {/*
+              header and footer are outside the atomic templates to prevent many API calls on mount
+              TODO / consider using redux to maintain state and to avoid subsequent useless api call
+              TODO / and then putting footer and header back to template
+          */}
+          <Header />
+
           <Routes>
             {renderRoutes(routes)}
             <Route
@@ -82,6 +92,9 @@ export const RoutesComponent = (props) => {
               path='*'
             />
           </Routes>
+
+          <Footer />
+
         </Suspense>
       </BrowserRouter>
     </>
