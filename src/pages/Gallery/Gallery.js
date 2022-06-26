@@ -1,21 +1,37 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import './Gallery.scss'
-
-import axios from 'axios'
 
 import BgImage from '../../assets/images/bg.jpg'
 import ArticlePage from '../../components/templates/ArticlePage'
 import ImageMasonry from '../../components/molecules/ImageMasonry'
 import ImageCarousel from '../../components/molecules/ImageCarousel'
+import TranslationContext from '../../features/TranslationContext'
+import { getGallery } from '../../functions/requests'
+import Loading from '../Loading'
 
 export const Gallery = ({ ...restProps }) => {
-  const [images, setImages] = useState([])
+  const translationContext = useContext(TranslationContext)
+  const { language } = translationContext
+
+  const [galleryData, setGalleryData] = useState(null)
+  const [loading, setLoading] = useState(true)
   const [openedImageIndex, setOpenedImageIndex] = useState(null)
 
   useEffect(() => {
-    axios
-      .get('https://picsum.photos/v2/list?limit=12')
-      .then(resp => setImages(resp?.data || []))
+    getGallery()
+      .then(resp => {
+        setGalleryData(
+          {
+            en: resp?.data?.data?.en?.gallery?.[0],
+            pl: resp?.data?.data?.pl?.gallery?.[0],
+          },
+        )
+        setTimeout(() => setLoading(false), 200)
+      })
+      .catch(e => {
+        setTimeout(() => setLoading(false), 200)
+        throw new Error('Invalid call')
+      })
   }, [])
 
   const catchImageClick = (imageData) => {
@@ -23,22 +39,25 @@ export const Gallery = ({ ...restProps }) => {
   }
 
   return (
-    <ArticlePage
-      content={(
-        <>
-          <ImageCarousel
-            images={images}
-            openedImageIndex={openedImageIndex}
-            setOpenedImageIndex={setOpenedImageIndex}
-          />
-          <ImageMasonry
-            catchImageClick={catchImageClick}
-            images={images}
-          />
-        </>
-    )}
-      imageSrc={BgImage}
-      title='Galeria'
-    />
-  )
+    loading
+      ? <Loading />
+      : (
+        <ArticlePage
+          content={(
+            <>
+              <ImageCarousel
+                images={galleryData?.[language]?.photos?.items}
+                openedImageIndex={openedImageIndex}
+                setOpenedImageIndex={setOpenedImageIndex}
+              />
+              <ImageMasonry
+                catchImageClick={catchImageClick}
+                images={galleryData?.[language]?.photos?.items}
+              />
+            </>
+          )}
+          imageSrc={galleryData?.[language]?.pagePhoto?.url || BgImage}
+          title='Galeria'
+        />
+      ))
 }

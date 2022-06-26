@@ -98,9 +98,9 @@ export const ImageCarousel = ({
         {
           images.map((image, i) => (
             <img
-              key={`Gallery-Image-${image.id}`}
+              key={`Gallery-Image-${image?.sys?.id || i}`}
               alt={`Tibi Domine gallery - ${i}`}
-              src={image.download_url} // todo lib to camel case
+              src={image.url}
             />
           ))
         }

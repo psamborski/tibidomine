@@ -100,7 +100,7 @@ export const getHomepage = async () => {
 
 export const getAboutCv = async () => {
   const body = `{
-    en: articlePageCollection(where: {
+    en: articlePageCollection(limit: 1, where: {
       pageId: "aboutCv"
     }) {
       aboutCv: items {
@@ -114,7 +114,7 @@ export const getAboutCv = async () => {
         }
       }
     },
-    pl: articlePageCollection(locale: "pl-PL", where: {
+    pl: articlePageCollection(limit: 1, locale: "pl-PL", where: {
       pageId: "aboutCv"
     }) {
       aboutCv: items {
@@ -140,7 +140,7 @@ export const getAboutCv = async () => {
 
 export const getAboutDescription = async () => {
   const body = `{
-    en: articlePageCollection(where: {
+    en: articlePageCollection(limit: 1, where: {
       pageId: "aboutDescription"
     }) {
       aboutDescription: items {
@@ -154,7 +154,7 @@ export const getAboutDescription = async () => {
         }
       }
     },
-    pl: articlePageCollection(locale: "pl-PL", where: {
+    pl: articlePageCollection(limit: 1, locale: "pl-PL", where: {
       pageId: "aboutDescription"
     }) {
       aboutDescription: items {
@@ -180,7 +180,7 @@ export const getAboutDescription = async () => {
 
 export const getAboutRecruitment = async () => {
   const body = `{
-    en: articlePageCollection(where: {
+    en: articlePageCollection(limit: 1, where: {
       pageId: "aboutRecruitment"
     }) {
       aboutRecruitment: items {
@@ -194,7 +194,7 @@ export const getAboutRecruitment = async () => {
         }
       }
     },
-    pl: articlePageCollection(locale: "pl-PL", where: {
+    pl: articlePageCollection(limit: 1, locale: "pl-PL", where: {
       pageId: "aboutRecruitment"
     }) {
       aboutRecruitment: items {
@@ -220,7 +220,7 @@ export const getAboutRecruitment = async () => {
 
 export const getAboutStaff = async () => {
   const body = `{
-    en: articlePageCollection(where: {
+    en: articlePageCollection(limit: 1, where: {
       pageId: "aboutStaff"
     }) {
       aboutStaff: items {
@@ -234,7 +234,7 @@ export const getAboutStaff = async () => {
         }
       }
     },
-    pl: articlePageCollection(locale: "pl-PL", where: {
+    pl: articlePageCollection(limit: 1, locale: "pl-PL", where: {
       pageId: "aboutStaff"
     }) {
       aboutStaff: items {
@@ -260,7 +260,7 @@ export const getAboutStaff = async () => {
 
 export const getAchievements = async () => {
   const body = `{
-    en: articlePageCollection(where: {
+    en: articlePageCollection(limit: 1, where: {
       pageId: "achievements"
     }) {
       achievements: items {
@@ -274,7 +274,7 @@ export const getAchievements = async () => {
         }
       }
     },
-    pl: articlePageCollection(locale: "pl-PL", where: {
+    pl: articlePageCollection(limit: 1, locale: "pl-PL", where: {
       pageId: "achievements"
     }) {
       achievements: items {
@@ -300,7 +300,7 @@ export const getAchievements = async () => {
 
 export const getRepertoire = async () => {
   const body = `{
-    en: articlePageCollection(where: {
+    en: articlePageCollection(limit: 1, where: {
       pageId: "repertoire"
     }) {
       repertoire: items {
@@ -314,7 +314,7 @@ export const getRepertoire = async () => {
         }
       }
     },
-    pl: articlePageCollection(locale: "pl-PL", where: {
+    pl: articlePageCollection(limit: 1, locale: "pl-PL", where: {
       pageId: "repertoire"
     }) {
       repertoire: items {
@@ -325,6 +325,54 @@ export const getRepertoire = async () => {
         },
         content {
           json
+        }
+      }
+    }
+  }`
+
+  return AxiosInstance().post(
+    '',
+    {
+      query: body,
+    },
+  )
+}
+
+export const getGallery = async () => {
+  const body = `{
+    en: galleryCollection(where: { pageId: "gallery" }, limit: 1) {
+      gallery: items {
+        pageTitle,
+        pagePhoto {
+          url,
+          title
+        },
+        photos: photosCollection {
+          items {
+            url
+            title
+            sys {
+              id
+            }
+          }
+        }
+      }
+    }
+    pl: galleryCollection(locale: "pl-PL", where: { pageId: "gallery" }, limit: 1) {
+      gallery: items {
+        pageTitle,
+        pagePhoto {
+          url,
+          title
+        },
+        photos: photosCollection {
+          items {
+            url
+            title
+            sys {
+              id
+            }
+          }
         }
       }
     }

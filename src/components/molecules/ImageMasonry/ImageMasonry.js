@@ -24,13 +24,13 @@ const ImageMasonryComponent = ({
       {
         images.map((image, i) => (
           <GalleryImage
-            key={`Gallery-Image-${image.id}`}
+            key={`Gallery-Image-${image?.sys?.id}`}
             alt={`Tibi Domine gallery - photo ${i}`}
             handleClick={catchImageClick}
-            id={`Gallery-Image-${image.id}`}
+            id={`Gallery-Image-${image?.sys?.id}`}
             index={i}
             scrollPostion={null}
-            src={image.download_url} // todo lib to camel case
+            src={image.url} // todo lib to camel case
           />
         ))
       }

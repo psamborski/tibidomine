@@ -20,12 +20,12 @@ export const ROUTES = {
 }
 
 // Main components
-const Homepage = lazy(() => pMinDelay(import('../pages/Homepage'), 750))
-const News = lazy(() => pMinDelay(import('../pages/News'), 750))
-const Repertoire = lazy(() => pMinDelay(import('../pages/Repertoire'), 750))
-const Achievements = lazy(() => pMinDelay(import('../pages/Achievements'), 750))
-const Gallery = lazy(() => pMinDelay(import('../pages/Gallery'), 750))
-const Contact = lazy(() => pMinDelay(import('../pages/Contact'), 750))
+const Homepage = lazy(() => pMinDelay(import('../pages/Homepage'), 500))
+const News = lazy(() => pMinDelay(import('../pages/News'), 500))
+const Repertoire = lazy(() => pMinDelay(import('../pages/Repertoire'), 500))
+const Achievements = lazy(() => pMinDelay(import('../pages/Achievements'), 500))
+const Gallery = lazy(() => pMinDelay(import('../pages/Gallery'), 500))
+const Contact = lazy(() => pMinDelay(import('../pages/Contact'), 500))
 
 // Main routes
 const mainRoutes = {
@@ -63,10 +63,10 @@ const mainRoutes = {
 }
 
 // About components
-const AboutDescription = lazy(() => pMinDelay(import('../pages/AboutDescription'), 750))
-const AboutStaff = lazy(() => pMinDelay(import('../pages/AboutStaff'), 750))
-const AboutCv = lazy(() => pMinDelay(import('../pages/AboutCv'), 750))
-const AboutRecruitment = lazy(() => pMinDelay(import('../pages/AboutRecruitment'), 750))
+const AboutDescription = lazy(() => pMinDelay(import('../pages/AboutDescription'), 500))
+const AboutStaff = lazy(() => pMinDelay(import('../pages/AboutStaff'), 500))
+const AboutCv = lazy(() => pMinDelay(import('../pages/AboutCv'), 500))
+const AboutRecruitment = lazy(() => pMinDelay(import('../pages/AboutRecruitment'), 500))
 
 // About routes
 const aboutRoutes = {
