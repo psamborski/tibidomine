@@ -1,51 +1,56 @@
-import React from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import './AboutStaff.scss'
+
+import { documentToHtmlString } from '@contentful/rich-text-html-renderer'
 
 import BgImage from '../../assets/images/bg.jpg'
 import ArticlePage from '../../components/templates/ArticlePage'
+import TranslationContext from '../../features/TranslationContext'
+import { getAboutStaff } from '../../functions/requests'
+import Loading from '../Loading'
 
-export const AboutStaff = ({ ...restProps }) => (
-  <ArticlePage
-    content={(
-      <>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-          dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
-          ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-          nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
-          anim id est laborum. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
-          anim id est laborum.
-        </p>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-          dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
-          ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-          nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
-          anim id est laborum. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-          nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
-          anim id est laborum.
-        </p>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-          dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
-          ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-          nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
-          anim id est laborum.
-        </p>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-          dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
-          ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-          nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
-          anim id est laborum. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
-          ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-          nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
-          anim id est laborum.
-        </p>
-      </>
-    )}
-    imageSrc={BgImage}
-    subtitle='o nas'
-    title='Kadra'
-  />
-)
+export const AboutStaff = ({ ...restProps }) => {
+  const translationContext = useContext(TranslationContext)
+  const {
+    t, language,
+  } = translationContext
+
+  const [aboutStaffData, setAboutStaffData] = useState(null)
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    getAboutStaff()
+      .then(resp => {
+        setAboutStaffData(
+          {
+            en: resp?.data?.data?.en?.aboutStaff?.[0],
+            pl: resp?.data?.data?.pl?.aboutStaff?.[0],
+          },
+        )
+        setTimeout(() => setLoading(false), 200)
+      })
+      .catch(e => {
+        setTimeout(() => setLoading(false), 200)
+        throw new Error('Invalid call')
+      })
+  }, [])
+  return (
+    loading
+      ? <Loading />
+      : (
+        <ArticlePage
+          content={(
+            // eslint-disable-next-line react/jsx-no-useless-fragment
+            <div
+              dangerouslySetInnerHTML={{
+                __html: documentToHtmlString(aboutStaffData?.[language]?.content?.json || {}),
+              }}
+            />
+          )}
+          imageSrc={aboutStaffData?.[language]?.pagePhoto?.url || BgImage}
+          subtitle={t('MENU__ABOUT')}
+          title={aboutStaffData?.[language]?.pageTitle || 'Staff'}
+        />
+      )
+  )
+}
