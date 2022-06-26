@@ -1,0 +1,65 @@
+@import "../../../styles/variables";
+
+.Note-Loader {
+  width: 100%;
+  max-width: 200px;
+  height: 65px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  position: relative;
+
+  .Note-Loader__line {
+    width: 100%;
+    height: 1px;
+    background: $linear_gradient;
+    clip-path: inset(0 0 0 0);
+    animation: line-slide-in-out 1.4s infinite ease-in-out;
+
+    &:nth-of-type(2) {
+      animation-delay: .2s;
+    }
+
+    &:nth-of-type(3) {
+      animation-delay: .4s;
+    }
+
+    &:nth-of-type(4) {
+      animation-delay: .6s;
+    }
+
+    &:nth-of-type(5) {
+      animation-delay: .8s;
+    }
+  }
+
+  .Note-Loader__note {
+    position: absolute;
+    font-size: 2em;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+@keyframes line-slide-in-out {
+  0% {
+    clip-path: inset(0 100% 0 0);
+  }
+  10% {
+    clip-path: inset(0 100% 0 0);
+  }
+  45% {
+    clip-path: inset(0 0 0 0);
+  }
+  55% {
+    clip-path: inset(0 0 0 0);
+  }
+  90% {
+    clip-path: inset(0 0 0 100%);
+  }
+  100% {
+    clip-path: inset(0 0 0 100%);
+  }
+}

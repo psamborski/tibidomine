@@ -7,12 +7,11 @@ import ScrollToTop from '../ScrollToTop'
 import ErrorBoundary from '../ErrorBoundary'
 
 import Error404 from '../../pages/Error404'
+import Loading from '../../pages/Loading'
 import Header from '../../components/organisms/Header'
 import Footer from '../../components/organisms/Footer'
 
 /* ---------- */
-
-const LoadingPage = () => <div>Loading</div>
 
 const renderRoutes = (routes) => routes.map((
   {
@@ -65,18 +64,18 @@ const renderRoutes = (routes) => routes.map((
 
 export const RoutesComponent = (props) => {
   const { routes } = props
-  const [loaderTimeout, setLoaderTimeout] = useState(false)
+  const [loaderTimeout, setLoaderTimeout] = useState(true)
 
   useEffect(() => {
-    setTimeout(() => setLoaderTimeout(false), 5000)
+    setTimeout(() => setLoaderTimeout(false), 2000)
   }, [])
 
   return (
     <>
-      {loaderTimeout && <LoadingPage />}
+      {loaderTimeout && <Loading />}
       <BrowserRouter>
         <ScrollToTop />
-        <Suspense fallback={<LoadingPage />}>
+        <Suspense fallback={<Loading />}>
 
           {/*
               header and footer are outside the atomic templates to prevent many API calls on mount

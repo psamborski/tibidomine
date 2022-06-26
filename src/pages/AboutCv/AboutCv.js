@@ -28,10 +28,10 @@ export const AboutCv = ({ ...restProps }) => {
             pl: resp?.data?.data?.pl?.aboutCv?.[0],
           },
         )
-        setLoading(false)
+        setTimeout(() => setLoading(false), 200)
       })
       .catch(e => {
-        setLoading(false)
+        setTimeout(() => setLoading(false), 200)
         throw new Error('Invalid call')
       })
   }, [])

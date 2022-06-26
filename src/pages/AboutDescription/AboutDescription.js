@@ -29,10 +29,10 @@ export const AboutDescription = ({ ...restProps }) => {
             pl: resp?.data?.data?.pl?.aboutDescription?.[0],
           },
         )
-        setLoading(false)
+        setTimeout(() => setLoading(false), 200)
       })
       .catch(e => {
-        setLoading(false)
+        setTimeout(() => setLoading(false), 200)
         throw new Error('Invalid call')
       })
   }, [])

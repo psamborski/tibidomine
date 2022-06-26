@@ -1,3 +1,5 @@
+@import "./variables";
+
 div, span, a, section, article, header, footer, nav {
   box-sizing: border-box;
 }
@@ -25,6 +27,10 @@ h2 {
   line-height: 1em;
   margin: 0;
   text-transform: uppercase;
+
+  @media screen and (max-width: $mobile_width_threshold) {
+    font-size: 2em;
+  }
 }
 
 // duplicate from Hyperlink in case of adding links in text in CMS

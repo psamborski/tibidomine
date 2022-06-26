@@ -9,6 +9,10 @@
   .Round-Button {
     margin: 0 .6em 0 0;
     font-size: 2em;
+
+    @media screen and (max-width: $mobile_width_threshold) {
+      margin: 0 .4em 0 0;
+    }
   }
 
   .Icon-Tile__text {
@@ -16,6 +20,10 @@
     text-align: left;
     display: flex;
     flex-direction: column;
+
+    @media screen and (max-width: $mobile_width_threshold) {
+      font-size: 1.3em;
+    }
   }
 
   .Hyperlink {

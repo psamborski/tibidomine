@@ -1,0 +1,15 @@
+@import "../../../styles/variables";
+
+.Full-Page-Overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: $main_black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1.8em;
+  z-index: 999999;
+}

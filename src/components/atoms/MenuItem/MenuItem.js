@@ -1,11 +1,17 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './MenuItem.scss'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useLocation } from 'react-router-dom'
 
 export const MenuItem = ({
   children, chevron, to, toggable, ...restProps
 }) => {
   const [isExpanded, setExpand] = useState(false)
+
+  const location = useLocation()
+
+  useEffect(() => {
+    setExpand(false)
+  }, [location.pathname])
 
   const onToggleClick = (event) => {
     event?.preventDefault()
