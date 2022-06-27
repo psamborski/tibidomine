@@ -37,8 +37,6 @@ export const News = ({ ...restProps }) => {
       })
   }, [])
 
-  console.log(newsData)
-
   return (
     loading
       ? <Loading />

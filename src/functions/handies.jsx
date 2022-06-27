@@ -30,7 +30,6 @@ export const renderOptions = (links) => {
     return {
       renderNode: {
         [BLOCKS.EMBEDDED_ASSET]: (node, next) => {
-          console.log(node)
           // find the asset in the assetMap by ID
           const asset = assetMap.get(node.data.target.sys.id)
 

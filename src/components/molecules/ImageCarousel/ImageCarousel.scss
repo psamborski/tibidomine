@@ -40,6 +40,10 @@
     background-color: $main_black;
     transition: $default_transition;
 
+    @media screen and (max-width: $mobile_width_threshold) {
+      font-size: 1em;
+    }
+
     &:hover {
       opacity: .9;
     }
