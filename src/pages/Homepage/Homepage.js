@@ -27,8 +27,8 @@ export const Homepage = ({ ...restProps }) => {
       .then(resp => {
         setHomepageData(
           {
-            en: resp?.data?.data?.en?.homepage?.[0],
-            pl: resp?.data?.data?.pl?.homepage?.[0],
+            en: resp?.data?.data?.en?.homepage?.[0] || {},
+            pl: resp?.data?.data?.pl?.homepage?.[0] || {},
           },
         )
         setTimeout(() => setLoading(false), 200)

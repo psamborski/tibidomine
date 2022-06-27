@@ -385,3 +385,63 @@ export const getGallery = async () => {
     },
   )
 }
+
+export const getContact = async () => {
+  const body = `{
+  en: contactCollection(where: { pageId: "contact" }, limit: 1) {
+    contact: items {
+      pageTitle
+      address {
+        json
+      }
+      phone {
+        json
+      }
+      rehearsal {
+        json
+      }
+      youtube {
+        json
+      }
+      facebook {
+        json
+      }
+      pinLocation {
+        lat
+        lon
+      }
+    }
+  }
+  pl: contactCollection(locale: "pl-PL", where: { pageId: "contact" }, limit: 1) {
+    contact: items {
+      pageTitle
+      address {
+        json
+      }
+      phone {
+        json
+      }
+      rehearsal {
+        json
+      }
+      youtube {
+        json
+      }
+      facebook {
+        json
+      }
+      pinLocation {
+        lat
+        lon
+      }
+    }
+  }
+}`
+
+  return AxiosInstance().post(
+    '',
+    {
+      query: body,
+    },
+  )
+}

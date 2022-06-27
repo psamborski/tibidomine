@@ -25,8 +25,8 @@ export const AboutDescription = ({ ...restProps }) => {
       .then(resp => {
         setAboutDescriptionData(
           {
-            en: resp?.data?.data?.en?.aboutDescription?.[0],
-            pl: resp?.data?.data?.pl?.aboutDescription?.[0],
+            en: resp?.data?.data?.en?.aboutDescription?.[0] || {},
+            pl: resp?.data?.data?.pl?.aboutDescription?.[0] || {},
           },
         )
         setTimeout(() => setLoading(false), 200)

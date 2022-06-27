@@ -22,8 +22,8 @@ export const Gallery = ({ ...restProps }) => {
       .then(resp => {
         setGalleryData(
           {
-            en: resp?.data?.data?.en?.gallery?.[0],
-            pl: resp?.data?.data?.pl?.gallery?.[0],
+            en: resp?.data?.data?.en?.gallery?.[0] || {},
+            pl: resp?.data?.data?.pl?.gallery?.[0] || {},
           },
         )
         setTimeout(() => setLoading(false), 200)

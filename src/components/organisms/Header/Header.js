@@ -20,8 +20,8 @@ export const Header = () => {
       .then(resp => {
         setHeaderData(
           {
-            en: resp?.data?.data?.en?.header?.[0],
-            pl: resp?.data?.data?.pl?.header?.[0],
+            en: resp?.data?.data?.en?.header?.[0] || {},
+            pl: resp?.data?.data?.pl?.header?.[0] || {},
           },
         )
       })

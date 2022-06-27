@@ -23,8 +23,8 @@ export const AboutRecruitment = ({ ...restProps }) => {
       .then(resp => {
         setAboutRecruitmentData(
           {
-            en: resp?.data?.data?.en?.aboutRecruitment?.[0],
-            pl: resp?.data?.data?.pl?.aboutRecruitment?.[0],
+            en: resp?.data?.data?.en?.aboutRecruitment?.[0] || {},
+            pl: resp?.data?.data?.pl?.aboutRecruitment?.[0] || {},
           },
         )
         setTimeout(() => setLoading(false), 200)

@@ -24,8 +24,8 @@ export const AboutCv = ({ ...restProps }) => {
       .then(resp => {
         setAboutCvData(
           {
-            en: resp?.data?.data?.en?.aboutCv?.[0],
-            pl: resp?.data?.data?.pl?.aboutCv?.[0],
+            en: resp?.data?.data?.en?.aboutCv?.[0] || {},
+            pl: resp?.data?.data?.pl?.aboutCv?.[0] || {},
           },
         )
         setTimeout(() => setLoading(false), 200)

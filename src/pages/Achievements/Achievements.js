@@ -21,8 +21,8 @@ export const Achievements = ({ ...restProps }) => {
       .then(resp => {
         setAchievementsData(
           {
-            en: resp?.data?.data?.en?.achievements?.[0],
-            pl: resp?.data?.data?.pl?.achievements?.[0],
+            en: resp?.data?.data?.en?.achievements?.[0] || {},
+            pl: resp?.data?.data?.pl?.achievements?.[0] || {},
           },
         )
         setTimeout(() => setLoading(false), 200)

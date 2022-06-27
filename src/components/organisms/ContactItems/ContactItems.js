@@ -1,52 +1,66 @@
 import React from 'react'
 import './ContactItems.scss'
 
-import IconTile from '../../molecules/IconTile'
-import Hyperlink from '../../atoms/Hyperlink'
+import { documentToHtmlString } from '@contentful/rich-text-html-renderer'
 
-export const ContactItems = () => (
+import IconTile from '../../molecules/IconTile'
+
+export const ContactItems = ({ contactItems }) => (
   <section className='Contact-Items'>
     <IconTile
       disabled
       iconClassname='fa-solid fa-location-dot'
     >
-      ul. Jakaśtam tamtam 12/24, 00-000 Warszawa
+      <span
+        dangerouslySetInnerHTML={{
+            __html: documentToHtmlString(contactItems?.address?.json || {}),
+          }}
+      />
     </IconTile>
     <IconTile
       disabled
       iconClassname='fa-solid fa-phone'
     >
-      <Hyperlink
-        href='tel:+48123123123'
-        title='+48123123123'
-      >
-        123123123 / Dariusz Zimnicki
-      </Hyperlink>
-      <Hyperlink
-        href='tel:+48123123123'
-        title='+48123123123'
-      >
-        123123123 / Someone Else
-      </Hyperlink>
+      <span
+        dangerouslySetInnerHTML={{
+            __html: documentToHtmlString(contactItems?.phone?.json || {}),
+          }}
+      />
     </IconTile>
     <IconTile
       disabled
       iconClassname='fa-solid fa-calendar-day'
     >
-      próby: wtorki i czwartki o 18:00
+      <span
+        dangerouslySetInnerHTML={{
+            __html: documentToHtmlString(contactItems?.rehearsal?.json || {}),
+          }}
+      />
     </IconTile>
 
     <IconTile
       disabled
       iconClassname='fa-brands fa-youtube'
     >
-      Chór Tibi Domine
+      <span
+        dangerouslySetInnerHTML={{
+            __html: documentToHtmlString(contactItems?.youtube?.json || {}),
+          }}
+      />
     </IconTile>
     <IconTile
       disabled
       iconClassname='fa-brands fa-facebook-f'
     >
-      Chór kameralny Tibi Domine
+      <span
+        dangerouslySetInnerHTML={{
+            __html: documentToHtmlString(contactItems?.facebook?.json || {}),
+          }}
+      />
     </IconTile>
   </section>
-)
+  )
+
+ContactItems.defaultProps = {
+  contactItems: {},
+}

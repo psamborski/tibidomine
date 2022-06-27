@@ -20,9 +20,15 @@
     text-align: left;
     display: flex;
     flex-direction: column;
+    align-self: stretch;
+    justify-content: center;
 
     @media screen and (max-width: $mobile_width_threshold) {
       font-size: 1.3em;
+    }
+
+    p {
+      margin: 0;
     }
   }
 

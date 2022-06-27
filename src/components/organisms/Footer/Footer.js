@@ -20,8 +20,8 @@ export const Footer = () => {
       .then(resp => {
         setFooterData(
           {
-          en: resp?.data?.data?.en?.footer?.[0],
-          pl: resp?.data?.data?.pl?.footer?.[0],
+          en: resp?.data?.data?.en?.footer?.[0] || {},
+          pl: resp?.data?.data?.pl?.footer?.[0] || {},
         },
         )
       })

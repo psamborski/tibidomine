@@ -21,8 +21,8 @@ export const Repertoire = ({ ...restProps }) => {
       .then(resp => {
         setRepertoireData(
           {
-            en: resp?.data?.data?.en?.repertoire?.[0],
-            pl: resp?.data?.data?.pl?.repertoire?.[0],
+            en: resp?.data?.data?.en?.repertoire?.[0] || {},
+            pl: resp?.data?.data?.pl?.repertoire?.[0] || {},
           },
         )
         setTimeout(() => setLoading(false), 200)

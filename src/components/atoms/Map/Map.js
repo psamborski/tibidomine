@@ -7,7 +7,7 @@ import {
   MapContainer,
   TileLayer,
   Marker,
-  Popup,
+  // Popup,
 } from 'react-leaflet'
 import L from 'leaflet'
 
@@ -15,9 +15,15 @@ import iconRetina from '../../../assets/images/map_marker@x2.png'
 import iconMarker from '../../../assets/images/map_marker.png'
 
 export const Map = ({
-  children, id, ...restProps
+  children, coordinates, id, ...restProps
 }) => {
-  const position = [52.2296756, 21.0122287]
+  const defaultPosition = {
+    lat: 52.2296756,
+    lon: 21.0122287,
+  }
+
+  const position = [coordinates?.lat || defaultPosition.lat, coordinates.lon || defaultPosition.lon]
+
   const icon = L.icon({
     iconRetinaUrl:iconRetina,
     iconUrl: iconMarker,
@@ -46,14 +52,18 @@ export const Map = ({
         icon={icon}
         position={position}
       >
-        <Popup>
-          Sth
-        </Popup>
+        {/* <Popup> */}
+        {/*  Sth */}
+        {/* </Popup> */}
       </Marker>
     </MapContainer>
 )
 }
 
 Map.defaultProps = {
+  coordinates: {
+    lat: null,
+    lon: null,
+  },
   id: 'Map',
 }
