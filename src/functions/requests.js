@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 import AxiosInstance from '../features/Axios'
 
 export const getFooter = async () => {
@@ -68,6 +69,18 @@ export const getHomepage = async () => {
         pageSubtitle,
         shortChoirDescription {
           json
+          links {
+            assets {
+              block {
+                url
+                contentType
+                description
+                sys {
+                  id
+                }
+              }
+            }
+          }
         },
         mainPhoto {
           url,
@@ -81,6 +94,18 @@ export const getHomepage = async () => {
         pageSubtitle,
         shortChoirDescription {
           json
+          links {
+            assets {
+              block {
+                url
+                contentType
+                description
+                sys {
+                  id
+                }
+              }
+            }
+          }
         },
         mainPhoto {
           url,
@@ -111,6 +136,18 @@ export const getAboutCv = async () => {
         },
         content {
           json
+          links {
+            assets {
+              block {
+                url
+                contentType
+                description
+                sys {
+                  id
+                }
+              }
+            }
+          }
         }
       }
     },
@@ -125,6 +162,18 @@ export const getAboutCv = async () => {
         },
         content {
           json
+          links {
+            assets {
+              block {
+                url
+                contentType
+                description
+                sys {
+                  id
+                }
+              }
+            }
+          }
         }
       }
     }
@@ -151,6 +200,18 @@ export const getAboutDescription = async () => {
         },
         content {
           json
+          links {
+            assets {
+              block {
+                url
+                contentType
+                description
+                sys {
+                  id
+                }
+              }
+            }
+          }
         }
       }
     },
@@ -165,6 +226,18 @@ export const getAboutDescription = async () => {
         },
         content {
           json
+          links {
+            assets {
+              block {
+                url
+                contentType
+                description
+                sys {
+                  id
+                }
+              }
+            }
+          }
         }
       }
     }
@@ -191,6 +264,18 @@ export const getAboutRecruitment = async () => {
         },
         content {
           json
+          links {
+            assets {
+              block {
+                url
+                contentType
+                description
+                sys {
+                  id
+                }
+              }
+            }
+          }
         }
       }
     },
@@ -205,6 +290,18 @@ export const getAboutRecruitment = async () => {
         },
         content {
           json
+          links {
+            assets {
+              block {
+                url
+                contentType
+                description
+                sys {
+                  id
+                }
+              }
+            }
+          }
         }
       }
     }
@@ -231,6 +328,18 @@ export const getAboutStaff = async () => {
         },
         content {
           json
+          links {
+            assets {
+              block {
+                url
+                contentType
+                description
+                sys {
+                  id
+                }
+              }
+            }
+          }
         }
       }
     },
@@ -245,6 +354,18 @@ export const getAboutStaff = async () => {
         },
         content {
           json
+          links {
+            assets {
+              block {
+                url
+                contentType
+                description
+                sys {
+                  id
+                }
+              }
+            }
+          }
         }
       }
     }
@@ -271,6 +392,18 @@ export const getAchievements = async () => {
         },
         content {
           json
+          links {
+            assets {
+              block {
+                url
+                contentType
+                description
+                sys {
+                  id
+                }
+              }
+            }
+          }
         }
       }
     },
@@ -285,6 +418,18 @@ export const getAchievements = async () => {
         },
         content {
           json
+          links {
+            assets {
+              block {
+                url
+                contentType
+                description
+                sys {
+                  id
+                }
+              }
+            }
+          }
         }
       }
     }
@@ -311,6 +456,18 @@ export const getRepertoire = async () => {
         },
         content {
           json
+          links {
+            assets {
+              block {
+                url
+                contentType
+                description
+                sys {
+                  id
+                }
+              }
+            }
+          }
         }
       }
     },
@@ -325,6 +482,18 @@ export const getRepertoire = async () => {
         },
         content {
           json
+          links {
+            assets {
+              block {
+                url
+                contentType
+                description
+                sys {
+                  id
+                }
+              }
+            }
+          }
         }
       }
     }
@@ -393,18 +562,78 @@ export const getContact = async () => {
       pageTitle
       address {
         json
+        links {
+          assets {
+            block {
+              url
+              contentType
+              description
+              sys {
+                id
+              }
+            }
+          }
+        }
       }
       phone {
         json
+        links {
+          assets {
+            block {
+              url
+              contentType
+              description
+              sys {
+                id
+              }
+            }
+          }
+        }
       }
       rehearsal {
         json
+        links {
+          assets {
+            block {
+              url
+              contentType
+              description
+              sys {
+                id
+              }
+            }
+          }
+        }
       }
       youtube {
         json
+        links {
+          assets {
+            block {
+              url
+              contentType
+              description
+              sys {
+                id
+              }
+            }
+          }
+        }
       }
       facebook {
         json
+        links {
+          assets {
+            block {
+              url
+              contentType
+              description
+              sys {
+                id
+              }
+            }
+          }
+        }
       }
       pinLocation {
         lat
@@ -417,18 +646,78 @@ export const getContact = async () => {
       pageTitle
       address {
         json
+        links {
+          assets {
+            block {
+              url
+              contentType
+              description
+              sys {
+                id
+              }
+            }
+          }
+        }
       }
       phone {
         json
+        links {
+          assets {
+            block {
+              url
+              contentType
+              description
+              sys {
+                id
+              }
+            }
+          }
+        }
       }
       rehearsal {
         json
+        links {
+          assets {
+            block {
+              url
+              contentType
+              description
+              sys {
+                id
+              }
+            }
+          }
+        }
       }
       youtube {
         json
+        links {
+          assets {
+            block {
+              url
+              contentType
+              description
+              sys {
+                id
+              }
+            }
+          }
+        }
       }
       facebook {
         json
+        links {
+          assets {
+            block {
+              url
+              contentType
+              description
+              sys {
+                id
+              }
+            }
+          }
+        }
       }
       pinLocation {
         lat
@@ -491,6 +780,18 @@ export const getNews = async () => {
         title
         content {
           json
+          links {
+            assets {
+              block {
+                url
+                contentType
+                description
+                sys {
+                  id
+                }
+              }
+            }
+          }
           links {
             assets {
               block {

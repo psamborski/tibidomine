@@ -1,9 +1,10 @@
 import React from 'react'
 import './ContactItems.scss'
 
-import { documentToHtmlString } from '@contentful/rich-text-html-renderer'
+import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 
 import IconTile from '../../molecules/IconTile'
+import { renderOptions } from '../../../functions/handies'
 
 export const ContactItems = ({ contactItems }) => (
   <section className='Contact-Items'>
@@ -11,55 +12,60 @@ export const ContactItems = ({ contactItems }) => (
       disabled
       iconClassname='fa-solid fa-location-dot'
     >
-      <span
-        dangerouslySetInnerHTML={{
-            __html: documentToHtmlString(contactItems?.address?.json || {}),
-          }}
-      />
+      {
+        documentToReactComponents(
+          contactItems?.address?.json || {},
+          renderOptions(contactItems?.address?.links || {}),
+        )
+      }
     </IconTile>
     <IconTile
       disabled
       iconClassname='fa-solid fa-phone'
     >
-      <span
-        dangerouslySetInnerHTML={{
-            __html: documentToHtmlString(contactItems?.phone?.json || {}),
-          }}
-      />
+      {
+        documentToReactComponents(
+          contactItems?.phone?.json || {},
+          renderOptions(contactItems?.phone?.links || {}),
+        )
+      }
     </IconTile>
     <IconTile
       disabled
       iconClassname='fa-solid fa-calendar-day'
     >
-      <span
-        dangerouslySetInnerHTML={{
-            __html: documentToHtmlString(contactItems?.rehearsal?.json || {}),
-          }}
-      />
+      {
+        documentToReactComponents(
+          contactItems?.rehearsal?.json || {},
+          renderOptions(contactItems?.rehearsal?.links || {}),
+        )
+      }
     </IconTile>
 
     <IconTile
       disabled
       iconClassname='fa-brands fa-youtube'
     >
-      <span
-        dangerouslySetInnerHTML={{
-            __html: documentToHtmlString(contactItems?.youtube?.json || {}),
-          }}
-      />
+      {
+        documentToReactComponents(
+          contactItems?.youtube?.json || {},
+          renderOptions(contactItems?.youtube?.links || {}),
+        )
+      }
     </IconTile>
     <IconTile
       disabled
       iconClassname='fa-brands fa-facebook-f'
     >
-      <span
-        dangerouslySetInnerHTML={{
-            __html: documentToHtmlString(contactItems?.facebook?.json || {}),
-          }}
-      />
+      {
+        documentToReactComponents(
+          contactItems?.facebook?.json || {},
+          renderOptions(contactItems?.facebook?.links || {}),
+        )
+      }
     </IconTile>
   </section>
-  )
+)
 
 ContactItems.defaultProps = {
   contactItems: {},

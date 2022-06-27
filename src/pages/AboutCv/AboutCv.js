@@ -1,14 +1,16 @@
 import React, { useContext, useEffect, useState } from 'react'
 import './AboutCv.scss'
 
-import { documentToHtmlString } from '@contentful/rich-text-html-renderer'
+import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
+
 import BgImage from '../../assets/images/bg.jpg'
 import ArticlePage from '../../components/templates/ArticlePage'
+import Loading from '../Loading'
 
 import TranslationContext from '../../features/TranslationContext'
 
 import { getAboutCv } from '../../functions/requests'
-import Loading from '../Loading'
+import { renderOptions } from '../../functions/handies'
 
 export const AboutCv = ({ ...restProps }) => {
   const translationContext = useContext(TranslationContext)
@@ -41,14 +43,12 @@ export const AboutCv = ({ ...restProps }) => {
       ? <Loading />
       : (
         <ArticlePage
-          content={(
-            // eslint-disable-next-line react/jsx-no-useless-fragment
-            <div
-              dangerouslySetInnerHTML={{
-                __html: documentToHtmlString(aboutCvData?.[language]?.content?.json || {}),
-              }}
-            />
-          )}
+          content={
+            documentToReactComponents(
+              aboutCvData?.[language]?.content?.json || {},
+              renderOptions(aboutCvData?.[language]?.content?.links || {}),
+            )
+          }
           imageSrc={aboutCvData?.[language]?.pagePhoto?.url || BgImage}
           subtitle={t('MENU__ABOUT')}
           title={aboutCvData?.[language]?.pageTitle || 'CV'}

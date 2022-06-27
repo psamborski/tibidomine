@@ -1,13 +1,16 @@
 import React, { useContext, useEffect, useState } from 'react'
 import './AboutStaff.scss'
 
-import { documentToHtmlString } from '@contentful/rich-text-html-renderer'
+import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 
 import BgImage from '../../assets/images/bg.jpg'
 import ArticlePage from '../../components/templates/ArticlePage'
-import TranslationContext from '../../features/TranslationContext'
-import { getAboutStaff } from '../../functions/requests'
 import Loading from '../Loading'
+
+import TranslationContext from '../../features/TranslationContext'
+
+import { getAboutStaff } from '../../functions/requests'
+import { renderOptions } from '../../functions/handies'
 
 export const AboutStaff = ({ ...restProps }) => {
   const translationContext = useContext(TranslationContext)
@@ -39,14 +42,12 @@ export const AboutStaff = ({ ...restProps }) => {
       ? <Loading />
       : (
         <ArticlePage
-          content={(
-            // eslint-disable-next-line react/jsx-no-useless-fragment
-            <div
-              dangerouslySetInnerHTML={{
-                __html: documentToHtmlString(aboutStaffData?.[language]?.content?.json || {}),
-              }}
-            />
-          )}
+          content={
+            documentToReactComponents(
+              aboutStaffData?.[language]?.content?.json || {},
+              renderOptions(aboutStaffData?.[language]?.content?.links || {}),
+            )
+          }
           imageSrc={aboutStaffData?.[language]?.pagePhoto?.url || BgImage}
           subtitle={t('MENU__ABOUT')}
           title={aboutStaffData?.[language]?.pageTitle || 'Staff'}

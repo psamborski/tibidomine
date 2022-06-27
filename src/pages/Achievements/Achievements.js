@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import './Achievements.scss'
 
-import { documentToHtmlString } from '@contentful/rich-text-html-renderer'
+import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 
 import BgImage from '../../assets/images/bg.jpg'
 import ArticlePage from '../../components/templates/ArticlePage'
@@ -10,6 +10,7 @@ import Loading from '../Loading'
 import TranslationContext from '../../features/TranslationContext'
 
 import { getAchievements } from '../../functions/requests'
+import { renderOptions } from '../../functions/handies'
 
 export const Achievements = ({ ...restProps }) => {
   const translationContext = useContext(TranslationContext)
@@ -39,14 +40,12 @@ export const Achievements = ({ ...restProps }) => {
       ? <Loading />
       : (
         <ArticlePage
-          content={(
-            // eslint-disable-next-line react/jsx-no-useless-fragment
-            <div
-              dangerouslySetInnerHTML={{
-                __html: documentToHtmlString(achievementsData?.[language]?.content?.json || {}),
-              }}
-            />
-          )}
+          content={
+            documentToReactComponents(
+              achievementsData?.[language]?.content?.json || {},
+              renderOptions(achievementsData?.[language]?.content?.links || {}),
+            )
+          }
           imageSrc={achievementsData?.[language]?.pagePhoto?.url || BgImage}
           title={achievementsData?.[language]?.pageTitle || 'Achievements'}
         />

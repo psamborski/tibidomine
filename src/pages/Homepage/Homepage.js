@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import './Homepage.scss'
 
-import { documentToHtmlString } from '@contentful/rich-text-html-renderer'
+import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 
 import FullPageHero from '../../components/templates/FullPageHero'
 import BgImage from '../../assets/images/bg.jpg'
@@ -12,6 +12,7 @@ import Loading from '../Loading'
 import TranslationContext from '../../features/TranslationContext'
 
 import { getHomepage } from '../../functions/requests'
+import { renderOptions } from '../../functions/handies'
 
 export const Homepage = ({ ...restProps }) => {
   const translationContext = useContext(TranslationContext)
@@ -53,13 +54,12 @@ export const Homepage = ({ ...restProps }) => {
             </Button>
           )}
           imageSrc={BgImage}
-          paragraph={(
-            <div
-              dangerouslySetInnerHTML={{
-                __html: documentToHtmlString(homepageData?.[language]?.shortChoirDescription?.json || {}),
-              }}
-            />
-          )}
+          paragraph={
+            documentToReactComponents(
+              homepageData?.[language]?.shortChoirDescription?.json || {},
+              renderOptions(homepageData?.[language]?.shortChoirDescription?.links || {}),
+            )
+          }
           title={(
             <PageTitle
               level={1}

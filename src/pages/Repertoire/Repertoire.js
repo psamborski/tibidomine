@@ -1,13 +1,16 @@
 import React, { useContext, useEffect, useState } from 'react'
 import './Repertoire.scss'
 
-import { documentToHtmlString } from '@contentful/rich-text-html-renderer'
+import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 
 import BgImage from '../../assets/images/bg.jpg'
 import ArticlePage from '../../components/templates/ArticlePage'
-import TranslationContext from '../../features/TranslationContext'
-import { getRepertoire } from '../../functions/requests'
 import Loading from '../Loading'
+
+import TranslationContext from '../../features/TranslationContext'
+
+import { renderOptions } from '../../functions/handies'
+import { getRepertoire } from '../../functions/requests'
 
 export const Repertoire = ({ ...restProps }) => {
   const translationContext = useContext(TranslationContext)
@@ -37,14 +40,12 @@ export const Repertoire = ({ ...restProps }) => {
       ? <Loading />
       : (
         <ArticlePage
-          content={(
-            // eslint-disable-next-line react/jsx-no-useless-fragment
-            <div
-              dangerouslySetInnerHTML={{
-                __html: documentToHtmlString(repertoireData?.[language]?.content?.json || {}),
-              }}
-            />
-          )}
+          content={
+            documentToReactComponents(
+              repertoireData?.[language]?.content?.json || {},
+              renderOptions(repertoireData?.[language]?.content?.links || {}),
+            )
+        }
           imageSrc={repertoireData?.[language]?.pagePhoto?.url || BgImage}
           title={repertoireData?.[language]?.pageTitle || 'Repertoire'}
         />
