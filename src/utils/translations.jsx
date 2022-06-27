@@ -59,4 +59,12 @@ export const TRANSLATIONS = {
     pl: 'Change language to english',
     en: 'Zmień język na polski',
   },
+  WORK_IN_PROGRESS: {
+    pl: 'Prace w toku',
+    en: 'Work in progress',
+  },
+  'WORK_IN_PROGRESS--MESSAGE': {
+    pl: 'Wróć do nas wkrótce!',
+    en: 'Come back to us soon!',
+  },
 }

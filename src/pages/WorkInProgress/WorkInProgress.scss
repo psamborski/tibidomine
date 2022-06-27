@@ -1,0 +1,18 @@
+@import "../../styles/variables";
+
+#Work-In-Progress {
+  padding-top: 0;
+
+  .Article-Image-Title {
+    height: 50%;
+  }
+
+  .Article-Section {
+    height: 100vh;
+  }
+
+  .fa-wrench {
+    color: #808285;
+    font-size: .8em;
+  }
+}

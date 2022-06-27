@@ -15,12 +15,16 @@ export const TranslationProvider = ({ children }) => {
   }
 
   // function that translates given key
-  const t = (key) => {
-    if (!TRANSLATIONS?.[key]?.[language]) {
+  const t = (key, translationLanguage = null) => {
+    const validatedLanguage = (translationLanguage === 'en' || translationLanguage === 'pl')
+      ? translationLanguage
+      : language
+
+    if (!TRANSLATIONS?.[key]?.[validatedLanguage]) {
       // eslint-disable-next-line no-console
       console.warn('MISSING TRANS KEY: ', key)
     }
-    return TRANSLATIONS?.[key]?.[language] || 'text'
+    return TRANSLATIONS?.[key]?.[validatedLanguage] || 'text'
   }
 
   const value = useMemo(() => Object({

@@ -11,7 +11,7 @@ import {
 } from 'react-leaflet'
 import L from 'leaflet'
 
-import iconRetina from '../../../assets/images/map_marker@x2.png'
+// import iconRetina from '../../../assets/images/map_marker@x2.png'
 import iconMarker from '../../../assets/images/map_marker.png'
 
 export const Map = ({
@@ -25,9 +25,12 @@ export const Map = ({
   const position = [coordinates?.lat || defaultPosition.lat, coordinates.lon || defaultPosition.lon]
 
   const icon = L.icon({
-    iconRetinaUrl:iconRetina,
+    iconRetinaUrl: iconMarker,
     iconUrl: iconMarker,
     shadowUrl: iconShadow,
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+    shadowAnchor: [12, 41],
   })
 
   return (

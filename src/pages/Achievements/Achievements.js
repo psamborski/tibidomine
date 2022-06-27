@@ -5,9 +5,11 @@ import { documentToHtmlString } from '@contentful/rich-text-html-renderer'
 
 import BgImage from '../../assets/images/bg.jpg'
 import ArticlePage from '../../components/templates/ArticlePage'
-import TranslationContext from '../../features/TranslationContext'
-import { getAchievements } from '../../functions/requests'
 import Loading from '../Loading'
+
+import TranslationContext from '../../features/TranslationContext'
+
+import { getAchievements } from '../../functions/requests'
 
 export const Achievements = ({ ...restProps }) => {
   const translationContext = useContext(TranslationContext)

@@ -445,3 +445,33 @@ export const getContact = async () => {
     },
   )
 }
+
+export const getWorkInProgress = async () => {
+  const body = `{
+    pl: basicInfoCollection(limit: 1) {
+      basicInfo: items {
+        workInProgress
+        mainPhoto {
+          url,
+          title
+        }
+      }
+    },
+    en: basicInfoCollection(limit: 1) {
+      basicInfo: items {
+        workInProgress
+        mainPhoto {
+          url,
+          title
+        }
+      }
+    },
+  }`
+
+  return AxiosInstance().post(
+    '',
+    {
+      query: body,
+    },
+  )
+}

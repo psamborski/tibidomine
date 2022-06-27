@@ -4,9 +4,12 @@ import './ArticlePage.scss'
 import ArticleImageTitle from '../../molecules/ArticleImageTitle'
 
 export const ArticlePage = ({
- title, subtitle, imageSrc, content, fullWidthSection, ...restProps
+ id, title, subtitle, imageSrc, content, fullWidthSection, ...restProps
 }) => (
-  <div className='Article-Page'>
+  <div
+    className='Article-Page'
+    id={id}
+  >
     <section
       className='Article-Section'
     >
@@ -30,6 +33,7 @@ export const ArticlePage = ({
 )
 
 ArticlePage.defaultProps = {
+  id: null,
   title: '',
   subtitle: '',
   imageSrc: '',
