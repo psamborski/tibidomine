@@ -33,6 +33,29 @@ h2 {
   }
 }
 
+h3 {
+  font-size: 2em;
+  line-height: 1em;
+  margin: 0;
+
+  @media screen and (max-width: $mobile_width_threshold) {
+    font-size: 1.6em;
+  }
+}
+
+hr {
+  width: 90%;
+  //max-width: 900px;
+  box-sizing: border-box;
+  height: 1px;
+  background: $blue_fade_linear_gradient;
+  //background: white;
+  opacity: 1;
+  outline: none;
+  border: none;
+  margin: 0;
+}
+
 // duplicate from Hyperlink in case of adding links in text in CMS
 a {
   color: white;

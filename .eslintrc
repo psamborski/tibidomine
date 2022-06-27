@@ -111,7 +111,7 @@
     ],
     "max-lines": [
       "error",
-      475
+      600
     ],
     "multiline-ternary": [
       "error",

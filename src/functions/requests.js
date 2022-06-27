@@ -475,3 +475,71 @@ export const getWorkInProgress = async () => {
     },
   )
 }
+
+export const getNews = async () => {
+  const body = `{
+    basicInfo: basicInfoCollection(limit: 1) {
+      data: items {
+        mainPhoto {
+          url,
+          title
+        }
+      }
+    }
+    pl: newsPostCollection(limit: 20, order: date_DESC, locale: "pl-PL") {
+      posts: items {
+        title
+        content {
+          json
+          links {
+            assets {
+              block {
+                url
+                contentType
+                description
+                sys {
+                  id
+                }
+              }
+            }
+          }
+        }
+        date
+        sys {
+          id
+        }
+      }
+    },
+    en: newsPostCollection(limit: 20, order: date_DESC) {
+      posts: items {
+        title
+        content {
+          json
+          links {
+            assets {
+              block {
+                url
+                contentType
+                description
+                sys {
+                  id
+                }
+              }
+            }
+          }
+        }
+        date
+        sys {
+          id
+        }
+      }
+    }
+  }`
+
+  return AxiosInstance().post(
+    '',
+    {
+      query: body,
+    },
+  )
+}

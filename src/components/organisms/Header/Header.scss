@@ -32,15 +32,6 @@
 
   hr {
     width: 90vw;
-    //max-width: 900px;
-    box-sizing: border-box;
-    height: 1px;
-    background: $blue_fade_linear_gradient;
-    //background: white;
-    opacity: 1;
-    outline: none;
-    border: none;
-    margin: 0;
   }
 
   @media screen and (max-width: $mobile_width_threshold) {
