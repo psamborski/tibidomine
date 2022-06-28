@@ -57,7 +57,7 @@ export const Gallery = ({ ...restProps }) => {
             </>
           )}
           imageSrc={galleryData?.[language]?.pagePhoto?.url || BgImage}
-          title='Galeria'
+          title={galleryData?.[language]?.pageTitle || 'Gallery'}
         />
       ))
 }
