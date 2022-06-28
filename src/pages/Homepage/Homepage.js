@@ -53,7 +53,7 @@ export const Homepage = ({ ...restProps }) => {
               {t('HERO__ABOUT_US')}
             </Button>
           )}
-          imageSrc={BgImage}
+          imageSrc={homepageData?.[language]?.mainPhoto?.url || BgImage}
           paragraph={
             documentToReactComponents(
               homepageData?.[language]?.shortChoirDescription?.json || {},
