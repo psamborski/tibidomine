@@ -28,8 +28,8 @@ export const TRANSLATIONS = {
     en: 'Contact',
   },
   'MENU__ABOUT--DESCRIPTION': {
-    pl: 'Opis chóru',
-    en: 'Description',
+    pl: 'Bio',
+    en: 'Bio',
   },
   'MENU__ABOUT--CV': {
     pl: 'CV',

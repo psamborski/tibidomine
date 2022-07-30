@@ -7,7 +7,7 @@ export const ROUTES = {
     ROOT: '/about',
     CHILDREN: {
       DESCRIPTION: '/choir',
-      CV: '/cv',
+      // CV: '/cv',
       RECRUITMENT: '/recruitment',
       STAFF: '/staff',
     },
